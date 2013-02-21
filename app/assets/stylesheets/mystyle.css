@@ -1,0 +1,20 @@
+img.baby{
+  height: 70px;
+  width: auto;
+  display: block-inline;
+}
+span.header{
+  font-size: 60px;
+  font-weight: bold;
+}
+
+#nonintel{
+  margin-top: -10px;
+}
+
+tr:nth-child(odd) td{
+  background-color: #999;
+}
+table tr:nth-child(even) td{
+  background-color: #555 !important;
+}

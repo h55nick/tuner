@@ -8,7 +8,9 @@
 #
 
 class Artist <ActiveRecord::Base
-attr_accessible :name, :image
+attr_accessible :name, :image, :album_ids, :song_ids
 has_many :songs
 has_many :albums, :through => :songs
+validates :name ,:uniqueness => true, :presence => true
+
 end

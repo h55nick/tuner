@@ -17,7 +17,7 @@ end
 resources :genres
 resources :albums
 resources :artists
-
+resources :songs
 
 
 end

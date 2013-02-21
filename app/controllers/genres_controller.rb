@@ -1,9 +1,14 @@
 class GenresController < ApplicationController
-    before_filter :check_if_admin, :except => [:index]
+    before_filter :check_if_admin, :except => [:index,:show]
 
   def index
     @genres = Genre.all
   end
+  def show
+    @genre = Genre.find(params[:id])
+  end
+
+
   def create
     @genre = Genre.new(params[:genre])
         if @genre.save
@@ -19,8 +24,8 @@ class GenresController < ApplicationController
      @genre = Genre.find(params[:id])
      render :new
   end
-  def show #Not Called
-  end
+
+
   def update
     genre = Genre.find(params[:id])
     if genre.update_attributes(params[:genre])

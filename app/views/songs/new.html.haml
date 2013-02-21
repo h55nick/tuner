@@ -1,0 +1,22 @@
+.row
+  .six.columns.centered
+    %h3
+      Song
+    = render(:partial => 'shared/errors' ,:locals => {:object => @song})
+    =form_for @song do |a|
+      =a.label :name
+      =a.text_field :name, :autofocus => true
+      =a.label :image
+      =a.text_field :image
+      =a.label :filename
+      =a.text_field :filename
+      -Genre.all.each do |genre|
+        =check_box_tag('song[genre_ids][]' , genre.id, genre.in?(@song.genres))
+        =genre.name
+      %br
+      %br
+      / -Artist.all.each do |artist|
+      /   =radio_button('song[]' , artist.id, @song.artist.nil?)
+      /   =artist.name
+      .submit
+      =a.submit nil, :class=>'button radius'

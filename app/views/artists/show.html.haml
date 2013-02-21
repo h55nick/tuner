@@ -1,0 +1,9 @@
+.six.columns.centered
+  %h2
+    =@artist.name
+    .albums
+      -@artist.albums.each do |album|
+        .album
+          %h4=link_to(album.name,album)
+          -album.songs.each do |song|
+            %h6=link_to(song.name,song)

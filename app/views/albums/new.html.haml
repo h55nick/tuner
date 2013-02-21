@@ -1,12 +1,15 @@
-
 .row
   .six.columns.centered
     %h3
       Album
-    -#No sendbacks because no restrictions on data
+    = render(:partial => 'shared/errors' ,:locals => {:object => @album})
     =form_for @album do |a|
       =a.label :name
-      =a.text_field :name
+      =a.text_field :name, :autofocus => true
       =a.label :image
       =a.text_field :image
+      %ul
+        -Song.all.each do |song|
+          %li=check_box_tag('album[song_ids][]' , song.id, song.in?(@album.songs))
+          =" : " +song.name
       =a.submit nil, :class=>'button radius'

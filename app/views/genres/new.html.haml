@@ -1,8 +1,8 @@
 .row
-  .five.columns
-    -#No errors possible.
+  .five.columns.centered
+    = render(:partial => 'shared/errors' ,:locals => {:object => @genre})
     =form_for @genre do |g|
       =g.label :name
-      =g.text_field :name
+      =g.text_field :name,:autofocus => true
       =g.submit nil, :class=> 'button radius'
 

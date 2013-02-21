@@ -1,0 +1,20 @@
+.five.columns.centered
+  %h2
+    =@song.name
+  %h4
+    =link_to("Edit",edit_song_path(@song.id),:class=>'button') if is_admin
+    =link_to("Songs",songs_path,:class=>'button')
+  .genrelist
+    -@song.genres.each do |genre|
+      =link_to(genre.name,genre)
+      %br
+    -if !@song.artist.nil?
+      .artist
+        =link_to(@song.artist.name,@song.artist)
+  -if !@song.album.nil?
+    .album
+      =link_to(@song.album.name, @song.album)
+  .playbutton
+    != @song.player
+
+

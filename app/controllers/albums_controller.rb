@@ -1,10 +1,14 @@
 class AlbumsController < ApplicationController
     #before_filter :check_if_logged_in, :except => [:new, :create]
-    before_filter :check_if_admin, :except => [:index]
+    before_filter :check_if_admin, :except => [:index,:show]
 
 def index
     @albums = Album.order(:name)
 end
+def show
+  @album = Album.find(params[:id])
+end
+
 
 def new
   @album =Album.new()

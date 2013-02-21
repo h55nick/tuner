@@ -1,10 +1,12 @@
 .row
   .seven.columns.centered
+    %h1
+      =link_to("Add User",new_user_path,:class=>'button') if is_admin
     %table.users.centered
       -@users.each do |user|
         %tr
           %td
-            -if user.is_admin
+            -if is_admin
               %span.label.alert=user.name
             -else
               %span=user.name

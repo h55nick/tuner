@@ -1,0 +1,7 @@
+.seven.columns.centered
+  %h2
+    =@album.name
+  .songs
+    -@album.songs.each do |song|
+      =link_to(song.name,song) + " by " + link_to(song.artist.name,song.artist)
+

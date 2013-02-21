@@ -1,15 +1,15 @@
 .six.columns.centered
   %h1
     Artists
-    =link_to("Add Artist",new_artist_path,:class=>'button') if !@auth.nil? && @auth.is_admin
+    =link_to("Add Artist",new_artist_path,:class=>'button')
   %table
     -@artists.each do |artist|
       %tr
         %td
-          =artist.name
+          =link_to(artist.name,artist)
         %td
           =image_tag(artist.image)
-        -if !@auth.nil? && @auth.is_admin
+        -if is_admin
           %td
             =link_to("Edit", edit_artist_path(artist.id), :class=>'button')
           %td

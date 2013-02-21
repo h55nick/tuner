@@ -1,7 +1,12 @@
 .eight.columns.centered
+  = render(:partial => 'shared/errors' , :locals => {:object => @artist})
   =form_for @artist do |a|
     =a.label :name
-    =a.text_field :name
+    =a.text_field :name ,:autofocus => true
     =a.label :image
     =a.text_field :image
+    %ul
+      -Album.all.each do |album|
+        =check_box_tag('artist[album_ids][]' , album.id, album.in?(@artist.albums))
+        =album.name
     =a.submit nil, :class => 'button radius'

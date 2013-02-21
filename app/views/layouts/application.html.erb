@@ -41,9 +41,11 @@
 
 <div class='row'>
   <div class='twelve columns'>
-    <%=yield%>
+    <%= yield %>
   </div>
 </div>
+
+
     <!-- Nav Sidebar -->
     <!-- This is source ordered to be pulled to the left on larger screens -->
     <div class="three columns pull-six">
@@ -62,11 +64,8 @@
 
       </div>
     </div>
-
-
-
   <!-- Footer -->
-
+<%= render :partial => "layouts/footer" %>
 
 </body>
 </html>

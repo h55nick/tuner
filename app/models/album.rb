@@ -10,8 +10,9 @@
 #
 
 class Album < ActiveRecord::Base
-  attr_accessible :name, :image
+  attr_accessible :name, :image, :song_ids
   has_many :songs
   has_many :artists, :through => :songs
   has_and_belongs_to_many :users
+  validates :name ,:presence => true
 end

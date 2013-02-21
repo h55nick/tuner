@@ -1,21 +1,16 @@
 module ApplicationHelper
+    def is_admin
+      !@auth.nil? && @auth.is_admin
+    end
+
   def intellinav
 
 
     firstrow = ""
     secondrow = ""
 
-    genrebutton = "#{link_to("Genres", genres_path,:class=>"button")}"
-    secondrow += genrebutton
-    albumbutton = "#{link_to("Albums", albums_path,:class=>"button")}"
-    secondrow += albumbutton
-
-    artistbutton = "#{link_to("Artists", artists_path,:class=>"button")}"
-    secondrow += artistbutton
-
     if @auth.present?
         if @auth.is_admin
-          secondrow += "<li>#{link_to('Show Users', users_path,:class=>"button")}</li>"
 
         end
 
@@ -33,4 +28,7 @@ module ApplicationHelper
     links +=secondrow
     links += "</ul>"
   end
+
+
 end
+

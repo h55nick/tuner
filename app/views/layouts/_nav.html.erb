@@ -2,14 +2,32 @@
 <div class="row">
   <div class="six columns">
     <div class="panel">
-      <h1>Tuner</h1>
+      <%=image_tag("http://www.daviddisalvo.org/storage/Baby-music.jpg?",:class=>'baby' )%>
+        <span class='header'>Tuner<span>
     </div>
     </div>
 
 
       <!-- Call to Intellinav -->
 
-      <%== intellinav %>
+<%== intellinav %>
+
+    <ul class='nav-bar right' id='nonintel'>
+        <li class='has-flyout'>
+            <a href='#'>Browse</a>
+            <a href='#' class='flyout-toggle'><span> </span></a>
+        <ul class='flyout'>
+          <li><%=link_to("Artist", artists_path)%></li>
+          <li><%=link_to("Albums", albums_path)%></li>
+          <li><%=link_to("Genres", genres_path)%></li>
+          <li><%=link_to("Songs", songs_path)%></li>
+        </ul>
+        <li>
+            <%=link_to('Show Users', users_path,:class=>"") if !@auth.nil? && @auth.is_admin %>
+        </li>
+      </ul>
+
+
 
 
 </div>

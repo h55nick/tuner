@@ -1,0 +1,16 @@
+.row
+  .six.columns.centered
+    %h2
+      Songs
+      =link_to("New Song",new_song_path,:class=>'button') if is_admin
+      %table
+        -@songs.each do |song|
+          %tr
+            %td
+              =link_to("Edit",edit_song_path(song.id),:class=>'button') if is_admin
+            %td
+              =link_to("Delete", song , :method =>'delete', :confirm => 'Are you sure?',:class=>'button alert') if is_admin
+            %td
+              =link_to(song.name,song)
+            %td
+              != song.player

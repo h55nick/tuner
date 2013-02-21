@@ -1,0 +1,7 @@
+.eight.columns.centered
+  =form_for @artist do |a|
+    =a.label :name
+    =a.text_field :name
+    =a.label :image
+    =a.text_field :image
+    =a.submit nil, :class => 'button radius'

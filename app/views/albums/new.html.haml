@@ -1,0 +1,12 @@
+
+.row
+  .six.columns.centered
+    %h3
+      Album
+    -#No sendbacks because no restrictions on data
+    =form_for @album do |a|
+      =a.label :name
+      =a.text_field :name
+      =a.label :image
+      =a.text_field :image
+      =a.submit nil, :class=>'button radius'

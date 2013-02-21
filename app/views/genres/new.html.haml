@@ -1,0 +1,8 @@
+.row
+  .five.columns
+    -#No errors possible.
+    =form_for @genre do |g|
+      =g.label :name
+      =g.text_field :name
+      =g.submit nil, :class=> 'button radius'
+

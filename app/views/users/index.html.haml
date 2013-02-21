@@ -1,0 +1,22 @@
+.row
+  .seven.columns.centered
+    %table.users.centered
+      -@users.each do |user|
+        %tr
+          %td
+            -if user.is_admin
+              %span.label.alert=user.name
+            -else
+              %span=user.name
+          %td
+            =number_to_currency(user.balance)
+          %td
+            %a.th
+              =image_tag(user.image)
+          %td
+            =button_to("Delete: #{user.name}", user, :method =>'delete', :confirm => 'Are you sure?' ,:class=>'alert button radius ' ) if (user != @auth ) #|| (user.is_admin != true )
+            = "Admin" if user.is_admin
+
+
+
+

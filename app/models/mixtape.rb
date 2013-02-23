@@ -10,7 +10,8 @@
 #
 
 class Mixtape < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :user_id, :song_ids
+  validates :name, :length => { :minimum => 2}
   belongs_to :user
   has_and_belongs_to_many :songs
 end

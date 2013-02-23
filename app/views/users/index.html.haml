@@ -1,7 +1,5 @@
 .row
   .seven.columns.centered
-    %h1
-      =link_to("Add User",new_user_path,:class=>'button') if is_admin
     %table.users.centered
       -@users.each do |user|
         %tr
@@ -16,8 +14,10 @@
             %a.th
               =image_tag(user.image)
           %td
-            =button_to("Delete: #{user.name}", user, :method =>'delete', :confirm => 'Are you sure?' ,:class=>'alert button radius ' ) if (user != @auth ) #|| (user.is_admin != true )
+            =button_to("Delete: #{user.name}", user, :method =>'delete', :confirm => 'Are you sure?' ,:class=>'alert button radius ' ) if (user != @auth )
             = "Admin" if user.is_admin
+          %td
+            =link_to("Edit",edit_user_path(user.id),:class=>'button')
 
 
 

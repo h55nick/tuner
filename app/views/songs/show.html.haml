@@ -3,18 +3,42 @@
     =@song.name
   %h4
     =link_to("Edit",edit_song_path(@song.id),:class=>'button') if is_admin
-    =link_to("Songs",songs_path,:class=>'button')
-  .genrelist
+    =link_to("Songs",songs_path,:class=>'button')if is_admin
+  .genrelist.songspace
+    %hr
+    Genres:
     -@song.genres.each do |genre|
       =link_to(genre.name,genre)
       %br
     -if !@song.artist.nil?
-      .artist
+      .artist.songspace
+        Artist:
         =link_to(@song.artist.name,@song.artist)
-  -if !@song.album.nil?
-    .album
-      =link_to(@song.album.name, @song.album)
-  .playbutton
-    != @song.player
+  .playbutton.songspace
+    %hr
+    /!= @song.player
+  - if (!@auth.nil?)
+    - if (@auth.balance > @song.price)
+      Price:
+      %a.button.success.radius{ :"data-reveal-id" =>"purchasemod"}
+        =sbutton(@song)
+
+#purchasemod.reveal-modal.expand.large
+  %h2
+    Purchase:
+    =@song.name
+    %h5
+      Price:
+      =@song.price
+      =form_for @song, :url=> purchase_path, :method => :post do |s|
+        =hidden_field_tag(:id, @song.id)
+        -@auth.mixtapes.each do |mixtape|
+          -if mixtape.name == "All Songs"
+            /Display None (auto added to All songs)
+          -else
+            =check_box_tag('song[mixtape_ids][]' , mixtape.id, mixtape.in?(@song.mixtapes.to_a))
+            %h6= mixtape.name
+        = s.submit("Buy!",:class=>'button radius success')
+
 
 

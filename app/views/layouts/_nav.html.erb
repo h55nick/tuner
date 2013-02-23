@@ -9,24 +9,38 @@
 
 
       <!-- Call to Intellinav -->
-
-<%== intellinav %>
-
-    <ul class='nav-bar right' id='nonintel'>
+<div class='six columns'>
+        <%== intellinav %>
+        <div class='row'>
+          <div class='twelve columns'>
+              <ul class='nav-bar right' id='nonintel'>
+                <%if is_auth && @auth.mixtapes.count > 0%>
+                <li class='has-flyout' >
+                  <%= link_to("Mixtapes", mixtapes_path )%>
+                  <a href='#' class='flyout-toggle'><span> </span></a>
+                  <ul class='flyout'>
+                      <%  @auth.mixtapes.each do |mtape|%>
+                          <li><%=link_to(mtape.name, mtape )%></li>
+                      <%end%>
+                        <li><%=link_to("Add Mixtape", new_mixtape_path,:id=>"addmixdropdown")%></li>
+            </ul>
+            <%end%>
         <li class='has-flyout'>
             <a href='#'>Browse</a>
             <a href='#' class='flyout-toggle'><span> </span></a>
         <ul class='flyout'>
           <li><%=link_to("Artist", artists_path)%></li>
-          <li><%=link_to("Albums", albums_path)%></li>
           <li><%=link_to("Genres", genres_path)%></li>
           <li><%=link_to("Songs", songs_path)%></li>
+          <li><%=link_to("Mixtapes", mixtapes_path) if is_auth %></li>
         </ul>
         <li>
             <%=link_to('Show Users', users_path,:class=>"") if !@auth.nil? && @auth.is_admin %>
         </li>
-      </ul>
-
+        </ul>
+      </div>
+      </div>
+  </div>
 
 
 

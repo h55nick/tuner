@@ -8,13 +8,13 @@
     %table.centered
       -@genres.each do |genre|
         %tr
-          -if @auth.is_admin
+          -if is_admin
             %td
               =link_to("Edit", edit_genre_path(genre.id),:class=>'button')# :class=>'alert button' )
             %td
               =link_to("Delete", genre, :method =>'delete', :confirm => 'Are you sure?' ,:class=>'alert button' )
-            %td
-              %span= link_to(genre.name,genre)
+          %td
+            %span= link_to(genre.name,genre)
 
 
 

@@ -7,9 +7,14 @@ class UsersController < ApplicationController
     def new
         @user = User.new()
     end
+
+
     def create
         @user = User.new(params[:user])
         if @user.save
+          #Create a 'hidden' mixtape to hold songs
+          @user.mixtapes = [Mixtape.create(:name=>"All Songs") ]
+          @user.save
           redirect_to root_path
         else
           render :new
@@ -17,13 +22,31 @@ class UsersController < ApplicationController
       end
 
 
+      def show
+        redirect_to root_path
+      end
+#Purchase song + add to mixtape
+def purchase
+  song = Song.find(params[:id])
+  if @auth.balance > song.price && song.update_attributes(params[:song]) && @auth.update_attributes(:balance =>(@auth.balance - song.price))
+          @auth.mixtapes[0].songs << song if !@auth.mixtapes[0].nil?
+        redirect_to mixtapes_path
+  else
+    redirect_to song_path(song.id)
+  end
+end
+
 #Need Login
   def edit
-      @user = @auth
-       render :new
+      @user = User.find(params[:id])
+      if  ((@user == @auth )|| (is_admin) )
+        render :new
+        else
+          redirect_to root_path
+      end
   end
   def update
-    @user = @auth
+    @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       redirect_to(root_path)
     else
@@ -37,7 +60,7 @@ class UsersController < ApplicationController
   end
   def destroy
     User.find(params[:id]).delete
-    redirect_to root_path
+    redirect_to users_path
   end
 
 ######### Checks  #######################

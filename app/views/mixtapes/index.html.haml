@@ -1,0 +1,20 @@
+.row
+  .nine.columns.centered
+    %h3 Your Mixtapes
+    .create
+      -if is_auth
+        =link_to("Add Mixtapes", new_mixtape_path,:class=>'button')
+    %table.centered
+      -@auth.mixtapes.each do |mixtape|
+        %tr
+          %td
+            =link_to(mixtape.name,mixtape)
+          -if is_admin
+            %td
+              =link_to("Edit", edit_mixtape_path(mixtape.id),:class=>'button')
+            %td
+              =link_to("Delete", mixtape, :method =>'delete', :confirm => 'Are you sure?' ,:class=>'alert button' )
+
+
+
+

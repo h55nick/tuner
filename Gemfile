@@ -7,7 +7,7 @@ gem 'haml'
 
 gem 'bcrypt-ruby'
 ###APPLICATION SPECIFIC #####
-
+gem 'youtube_it'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

@@ -1,3 +1,16 @@
+html body div a{
+  color: black;
+  font-size: 1.2em;
+}
+
+td{
+  width: 130px;
+}
+a.button{
+  vertical-align: middle;
+}
+
+
 img.baby{
   height: 70px;
   width: auto;
@@ -8,6 +21,7 @@ span.header{
   font-weight: bold;
 }
 
+
 #nonintel{
   margin-top: -10px;
 }
@@ -17,4 +31,29 @@ tr:nth-child(odd) td{
 }
 table tr:nth-child(even) td{
   background-color: #555 !important;
+}
+
+div.songspace{
+  margin-top: 20px;
+}
+div.genresong{
+  margin: 15px 0px;
+}
+
+div.inline{
+  display: inline-block;
+}
+
+div.artist,div.song{
+  font-size: 20px;
+}
+div.artist{
+  margin-left: 30px;
+}
+
+img.albumimage{
+  width: 150px;
+}
+img.artistimage{
+  width: 190px;
 }

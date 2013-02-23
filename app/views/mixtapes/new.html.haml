@@ -1,0 +1,16 @@
+.row
+  .six.columns.centered
+    %h3
+      Mixtape
+    = render(:partial => 'shared/errors' ,:locals => {:object => @mixtape})
+    =form_for @mixtape do |a|
+      =a.label :name
+      =a.text_field :name, :autofocus => true
+      %ul
+        -usersongs.each do |song|
+          %li
+            =check_box_tag('mixtape[song_ids][]' , song.id, song.in?(@mixtape.songs))
+            =song.name
+      =a.submit nil, :class=>'button radius'
+
+

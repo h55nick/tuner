@@ -7,6 +7,12 @@ def index
 end
 def show
   @song = Song.find(params[:id])
+  @client ||= YouTubeIt::Client.new(:dev_key => "AI39si4QPB-NMrFRP_VsRYhKN2MTh0Qm0csilcEMd0YoPGZ5bWWZ0_Ibw_G8VjHhgFHzDvg0MGKYL2Tp_BlwVTV20KCpPcekfw")
+
+    q = @client.videos_by(:query => "penguin")
+    options={:class => 'video-player', :id => 'my-video', :width => '1000', :height => '250', :frameborder => '',}
+    @html = q.videos.first.embed_html5(options)
+
 end
 
 #Freshies (admin only)

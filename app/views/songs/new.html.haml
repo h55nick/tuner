@@ -10,13 +10,20 @@
       =a.text_field :image
       =a.label :filename
       =a.text_field :filename
+
+      / =a.text_field(:album_ids, :type=>'hidden',:value=>"0")
+
+
       -Genre.all.each do |genre|
-        =check_box_tag('song[genre_ids][]' , genre.id, genre.in?(@song.genres))
+        =check_box_tag('song[genre_ids][]' , genre.id, genre.in?(@song.genres.to_a))
         =genre.name
       %br
       %br
+
+
       / -Artist.all.each do |artist|
       /   =radio_button('song[]' , artist.id, @song.artist.nil?)
       /   =artist.name
+
       .submit
       =a.submit nil, :class=>'button radius'

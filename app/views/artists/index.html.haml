@@ -1,7 +1,7 @@
 .six.columns.centered
   %h1
     Artists
-    =link_to("Add Artist",new_artist_path,:class=>'button')
+    =link_to("Add Artist", new_artist_path,:class=>'button') if is_admin
   %table
     -@artists.each do |artist|
       %tr

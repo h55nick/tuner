@@ -7,17 +7,14 @@ get '/login' => 'session#new'
 post '/login' => 'session#create'
 delete '/login' => 'session#destroy'
 
+post "/song/purchase/" => 'users#purchase', :as => 'purchase'
 
-resources :users, :except => [:edit] do
-  collection do
-    get 'edit'
-  end
-end
+resources :users
 
 resources :genres
-resources :albums
 resources :artists
 resources :songs
+resources :mixtapes
 
 
 end
